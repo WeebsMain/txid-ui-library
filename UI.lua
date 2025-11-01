@@ -1957,9 +1957,9 @@ local Library do
             local Items = { } do
                 local FirstLetterOfName = StringSub(Window.Name, 1, 1)
                 
-                -- Adjust size for mobile
-                local WindowWidth = IsMobile and 600 or 798
-                local WindowHeight = IsMobile and 450 or 599
+                -- Adjust size for mobile - smaller initial size but still functional
+                local WindowWidth = IsMobile and 480 or 798
+                local WindowHeight = IsMobile and 360 or 599
                 
                 Items["MainFrame"] = Instances:Create("Frame", {
                     Parent = Library.Holder.Instance,
@@ -1973,7 +1973,10 @@ local Library do
                 })  Items["MainFrame"]:AddToTheme({BackgroundColor3 = "Background"})
 
                 Items["MainFrame"]:MakeDraggable()
-                Items["MainFrame"]:MakeResizeable(Vector2New(Items["MainFrame"].Instance.AbsoluteSize.X, Items["MainFrame"].Instance.AbsoluteSize.Y), Vector2New(9999, 9999))
+                -- Set minimum resize to be smaller for mobile users, but keep it functional
+                local MinWidth = IsMobile and 400 or 600
+                local MinHeight = IsMobile and 300 or 450
+                Items["MainFrame"]:MakeResizeable(Vector2New(MinWidth, MinHeight), Vector2New(9999, 9999))
                 
                 Instances:Create("UICorner", {
                     Parent = Items["MainFrame"].Instance,
@@ -2607,14 +2610,25 @@ local Library do
                     local NewColumn = Instances:Create("ScrollingFrame", {
                         Parent = Items["Page"].Instance,
                         Name = "\0",
-                        ScrollBarImageColor3 = FromRGB(0, 0, 0),
+                        ScrollBarImageColor3 = FromRGB(100, 100, 100),
                         Active = true,
                         BorderColor3 = FromRGB(0, 0, 0),
-                        ScrollBarThickness = 0,
+                        ScrollBarThickness = 4,
                         BackgroundTransparency = 1,
                         Size = UDim2New(1, 0, 1, 0),
                         BorderSizePixel = 0,
+                        AutomaticCanvasSize = Enum.AutomaticSize.Y,
+                        CanvasSize = UDim2New(0, 0, 0, 0),
+                        ScrollingDirection = Enum.ScrollingDirection.Y,
                         BackgroundColor3 = FromRGB(255, 255, 255)
+                    })
+                    
+                    -- Add UIListLayout to make sections stack properly
+                    Instances:Create("UIListLayout", {
+                        Parent = NewColumn.Instance,
+                        Name = "\0",
+                        Padding = UDimNew(0, 8),
+                        SortOrder = Enum.SortOrder.LayoutOrder
                     })
                     
                     if Index == 1 then
