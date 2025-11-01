@@ -738,9 +738,9 @@ Free to use for personal and commercial projects. Please credit txid if you use 
 
 ## 🔗 Links
 
-- **GitHub:** [Your Repository Here]
-- **Discord:** [Your Discord Here]
-- **Support:** [Your Support Link Here]
+- **GitHub:** https://github.com/WeebsMain/txid-ui-library/
+- **Discord:** https://discord.gg/8MunY7FtfY
+- **Support:** https://discord.gg/8MunY7FtfY
 
 ---
 
