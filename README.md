@@ -1,5 +1,4 @@
-# TB3 UI Library
-**Made by txid - Mobile & Desktop Optimized Roblox UI Library**
+**Made by Km - Mobile & Desktop Optimized Roblox UI Library**
 
 A powerful, feature-rich UI library for Roblox with full mobile support, smooth animations, and extensive customization options.
 
